@@ -4,23 +4,22 @@
 
         <div>
             <?php
-            foreach ($data as $product) {
+            foreach ($listProducts as $product) {
             ?>
+            <div>
+                <img src="<?= ROOTDOMAINE . $product['url_img']; ?>">
+                <h3><a href="lire/<?= $product['id']; ?>"><?= $product['name'] ?></a></h3>
 
-                <div>
-                    <a href="lire/<?= $product['id']; ?>"><?= $product['name'] ?></a>
+                <p class="legende">
+                    <?php echo $product['name'] . ' <br> ' . $product['description'] . '<br>' . '$' . $product['price'] . ' CAD'; ?>
+                <form method="get">
+                    <input type="hidden" name="id" value="<?= $product['id']; ?>">
+                    <p class="legende" name="qtty">En Stock : <?php echo $product['qtty'] . ' <br> '; ?></p>
+                    <a type="submit" name="ajoutPanier" class="btn btn-success"
+                        href="<?= ROOTDOMAINE . "Paniers/ajouterPanier/" . $product['id']; ?>">Ajouter au Panier</a>
 
-                    <img src=<?php echo $product['url_img']; ?> id="img" alt="">
-                    </a>
-                    <p class="legende">
-                        <?php echo $product['name'] . ' <br> ' . $product['description'] . '<br>' . '$' . $product['price'] . ' CAD'; ?>
-                    <form method="post" action=<?= ROOTDOMAINE . "Paniers/ajouterPanier" ?>>
-                        <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
-                        <input type="number" class="legende" style="width: 800px;" name="quantiteDemander" min=0 max=<?php echo $product['qtty'] . ' <br> '; ?>>
-                        <input type="submit" name="ajoutPanier" value="Ajouter au Panier" style="width: 800px;" class="btn btn-success">
-
-                    </form>
-                </div>
+                </form>
+            </div>
             <?php } ?>
 
 

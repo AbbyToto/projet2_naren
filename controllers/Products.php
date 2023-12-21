@@ -7,15 +7,15 @@ class Products extends Controller
     {
 
         $this->loadModel("Product");
-        $products = $this->Product->getAll();
-        $this->render('index', $products);
+        $listProducts = $this->Product->getAll();
+        $this->render('index', compact("listProducts"));
     }
 
     public function lire($id)
     {
         $this->loadModel("Product");
         $this->Product->id = $id;
-        $product = $this->Product->getOneById();
+        $products = $this->Product->getOneById();
         $this->render('lire', compact('product'));
     }
 

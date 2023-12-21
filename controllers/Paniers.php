@@ -14,6 +14,6 @@ class Paniers extends Controller
     {
         $panier = new Panier();
         $panier->ajoutPanier($param, 1);
-        header("Location:" . ROOTDOMAINE . "panier/index");
+        header("Location:" . ROOTDOMAINE . "paniers/index");
     }
 }
