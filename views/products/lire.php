@@ -22,10 +22,12 @@
 
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                <textarea class="form-control" name="description" rows="3" value="<?= $product['description']  ?>" disabled></textarea>
+                <textarea class="form-control" name="description" rows="3" value="<?= $product['description']  ?>"
+                    disabled></textarea>
             </div>
             <div class="mb-3">
-                <input type="submit" name="ajoutPanier" value="Ajouter au Panier" class="btn btn-success">
+                <a type="submit" name="ajoutPanier" class="btn btn-success"
+                    href="<?= ROOTDOMAINE . "Paniers/ajouterPanier/" . $product['id']; ?>">Ajouter au Panier</a>
                 <input type="submit" name="acheter" value="Acheter le produit" class="btn btn-success">
             </div>
         </form>

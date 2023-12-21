@@ -1,8 +1,13 @@
 <?php
-var_dump($listPaniers);
-
 
 $panier = new Panier();
+
+function getDateAc()
+{
+    return $date_commande = date("Y-m-d h:m:s");
+}
+echo getDateAc();
+
 $totals = 0;
 $product = new Product();
 
@@ -12,6 +17,7 @@ if (isset($_POST['modifierPanier'])) {
     $quantiteDemander = $_POST['quantiteDemander'];
     $panier->ajoutPanier($id, $quantiteDemander);
 }
+
 ?>
 
 <main>
@@ -23,31 +29,40 @@ if (isset($_POST['modifierPanier'])) {
                     <th scope="col"></th>
                     <th scope="col">Nom</th>
                     <th scope="col">Prix Unitaire</th>
-                    <!-- <th scope="col">Description</th> -->
+                    <th scope="col">Description</th>
                     <th scope="col">Quantiter Demander</th>
-                    <!-- <th scope="col">Total</th> -->
+                    <th scope="col">Total</th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
 
                 <?php
-                foreach ($listPanier as $panier) {
-                    $product->getOneById($id);
+                foreach ($listPanier as $idProduct => $quantiteDemander) {
+                    $product->getOneById($idProduct);
                 ?>
-                    <div>
 
-                        <h3><a href="lire/<?= $panier['user_order_id']; ?>"></a></h3>
+                    <form method="post">
+                        <tr>
+                            <th scope="row"><input type="hidden" name="product_id" value="<?php echo $idProduct; ?>">
+                            </th>
+                            <td><?php echo $product['name']; ?></td>
+                            <td><?php echo $product['price']; ?></td>
+                            <td><?php echo $product['description']; ?></td>
 
-                        <p class="legende">
-                            <?= $product['name'] . ' <br> ' . $product['description'] . '<br>' . '$' . $panier['price'] . ' CAD'; ?>
-                        <form method="get">
-                            <input type="hidden" name="id" value="<?= $panier['product_id']; ?>">
-                            <p class="legende" name="qtty">En Stock : <?= $panier['qtty'] . ' <br> '; ?></p>
-                            <a type="submit" name="ajoutPanier" class="btn btn-success" href="<?= ROOTDOMAINE . "Paniers/ajouterPanier/" . $product['id']; ?>">Ajouter au Panier</a>
+                            <td><input min="1" max="<?php echo $product['qtty']; ?>" type="number" value="<?= $panier['qtty'] ?>" name="quantiteDemander"></td>
 
-                        </form>
-                    </div>
+                            <td>
+                                <button type="submit" class="btn btn-info" name="modifierPanier">
+                                    <i class="bi bi-pencil-square">
+                                    </i>
+                                </button>
+                                <a href="supprime/id=<?= $panier['product_id']; ?>" class="btn btn-danger">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </form>
                 <?php } ?>
 
 

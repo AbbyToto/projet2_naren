@@ -17,14 +17,14 @@ class Product extends Crud
         $this->_sql = "insert into " . $this->table . "(name,
         description,price,qtty,url_img) values(:name,
         :description,:price,:qtty,:url_img)";
-        // $st = $this->_connexion->prepare($sql);
-        // $st->BindParam(":name", $data['name']);
-        // $st->BindParam(":description", $data['description']);
-        // $st->BindParam(":price", $data['price']);
-        // $st->BindParam(":qtty", $data['qtty']);
-        // $st->BindParam(":url_img", $data['url_img']);
-        // $resultat = $st->execute();
-        // return $resultat;
-        return $this->getLines($data);
+        $st = $this->_connexion->prepare($this->_sql);
+        $st->BindParam(":name", $data['name'], PDO::PARAM_STR);
+        $st->BindParam(":description", $data['description'], PDO::PARAM_STR);
+        $st->BindParam(":price", $data['price'], PDO::PARAM_INT);
+        $st->BindParam(":qtty", $data['qtty'], PDO::PARAM_INT);
+        $st->BindParam(":url_img", $data['url_img'], PDO::PARAM_STR);
+        $resultat = $st->execute();
+        return $resultat;
+        //return $this->getLines($data);
     }
 }

@@ -50,11 +50,15 @@ abstract class Crud
 
         $this->stmt = $this->_connexion->prepare($this->_sql);
         foreach ($params as $nomParam => $valParam) {
-            $this->stmt->bindValue(":" . $nomParam, $valParam);
-        }
-        return $this->stmt->execute();
-    }
 
+            if (is_int($valParam)) {
+                $this->stmt->bindValue(':' . $nomParam, $valParam, PDO::PARAM_INT);
+            } else {
+                $this->stmt->bindValue(':' . $nomParam, $valParam, PDO::PARAM_STR);
+            }
+            return $this->stmt->execute();
+        }
+    }
     public function getOneById()
     {
         $sql = "SELECT * from " . $this->table . ' where id = :id';

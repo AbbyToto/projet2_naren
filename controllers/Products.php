@@ -15,7 +15,7 @@ class Products extends Controller
     {
         $this->loadModel("Product");
         $this->Product->id = $id;
-        $products = $this->Product->getOneById();
+        $product = $this->Product->getOneById();
         $this->render('lire', compact('product'));
     }
 
