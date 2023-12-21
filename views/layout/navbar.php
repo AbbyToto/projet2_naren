@@ -20,7 +20,7 @@ $panier = new Panier();
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm navbar-dark" style="background-color:rosybrown" ;>
+    <nav class="navbar navbar-expand-sm navbar-dark" style="background-color:darksalmon" ;>
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Florasis</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -47,6 +47,10 @@ $panier = new Panier();
                     <li class="nav-item">
                         <a class="nav-link" href="<?= ROOTDOMAINE . "products/index"; ?>">Best Seller</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= ROOTDOMAINE . "products/ajout"; ?>">Product Management</a>
+                    </li>
+
                     <!-- <?php
                             //if ($this->Auth->getUserSession()) { 
                             ?>
