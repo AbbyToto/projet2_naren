@@ -7,7 +7,7 @@
             <?php endif; ?>
             <div class="mb-3">
                 <label for="image" class="form-label">Image</label>
-                <input type="text" class="form-control" name="url_img">
+                <input type="file" class="form-control" name="url_img">
                 <?php if (isset($data['url_img'])) : ?>
                 <div class="alert alert-danger"><?= $data['url_img'] ?></div>
                 <?php endif; ?>
